@@ -1,0 +1,18 @@
+definitions:
+  uuid-param:
+    in: path
+    description: uuid path argument
+    required: true
+    name: id
+    schema:
+      type: string
+      format: uuid
+
+  id-param:
+    in: path
+    description: id path argument
+    required: true
+    name: id
+    schema:
+      type: number
+      format: id

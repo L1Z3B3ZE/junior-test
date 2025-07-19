@@ -1,0 +1,22 @@
+definitions:
+  422:
+    description: Unprocessable entity
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            errors:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: required
+                  stack:
+                    type: string
+                    example: [<field>]
+                  message:
+                    type: string
+                    example: <field> is required

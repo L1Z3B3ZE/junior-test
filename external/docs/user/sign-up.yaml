@@ -1,0 +1,38 @@
+/users/sign-up:
+  post:
+    tags:
+      - Authentication
+    summary: Register new user
+    description: Create a new user account
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+                format: password
+                minLength: 6
+            required:
+              - email
+              - password
+    responses:
+      200:
+        description: User registered successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+      409:
+        $ref: "#/definitions/409"
+      422:
+        $ref: "#/definitions/422"

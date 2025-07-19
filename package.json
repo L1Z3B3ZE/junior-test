@@ -1,0 +1,57 @@
+{
+  "name": "auth",
+  "main": "app/main.ts",
+  "scripts": {
+    "build": "tsc",
+    "code-check": "tsc --noEmit",
+    "start:build": "node -r dotenv/config build/app/main.js",
+    "start:local": "tsx watch --include ./package.json --include \"./external/docs/**/*\" -r dotenv/config app/main.ts",
+    "sql:migrate": "tsx -r dotenv/config ./app/common/helpers/run-migrations.ts dotenv_config_path=./.env",
+    "sql:codegen": "npx kysely-codegen --out-file ./app/common/types/kysely/db.type.ts",
+    "bun:start:local": "bun -r dotenv/config --watch app/main.ts",
+    "bun:sql:codegen": "bun x kysely-codegen --out-file ./app/common/types/kysely/db.type.ts",
+    "bun:sql:migrate": "bun -r dotenv/config app/common/helpers/run-migrations.ts dotenv_config_path=./.env"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.16.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/bun": "latest",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/ms": "^2.1.0",
+    "@types/pg": "^8.11.10",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "kysely-codegen": "^0.17.0",
+    "prettier": "^3.4.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "tsx": "^4.19.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@fastify/cors": "^10.0.2",
+    "@fastify/jwt": "^9.0.3",
+    "@fastify/multipart": "^9.0.3",
+    "@fastify/swagger": "^9.4.1",
+    "@fastify/swagger-ui": "^5.2.1",
+    "bcrypt": "^5.1.1",
+    "date-fns-tz": "^3.2.0",
+    "dotenv": "^16.4.7",
+    "fastify": "^5.1.0",
+    "fastify-plugin": "^5.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "kysely": "^0.27.4",
+    "pg": "^8.13.1",
+    "pino": "^9.6.0",
+    "pino-pretty": "^13.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "ts-node": "^10.9.2",
+    "zod": "^3.23.8"
+  }
+}

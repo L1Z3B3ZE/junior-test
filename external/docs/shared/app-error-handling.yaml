@@ -1,0 +1,15 @@
+definitions:
+  app-error:
+    application/json:
+      schema:
+        type: object
+        required:
+          - property
+          - type
+        properties:
+          property:
+            type: string
+          type:
+            type: string
+          message:
+            type: string

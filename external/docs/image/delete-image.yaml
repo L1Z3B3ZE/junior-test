@@ -1,0 +1,23 @@
+/images/{id}:
+  delete:
+    tags:
+      - Images
+    summary: Delete image
+    security:
+      - Bearer: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      204:
+        description: Image deleted successfully
+      401:
+        $ref: "#/definitions/401"
+      403:
+        $ref: "#/definitions/403"
+      404:
+        $ref: "#/definitions/404"

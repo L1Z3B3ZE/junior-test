@@ -1,0 +1,5 @@
+definitions:
+  404:
+    description: Not found
+    content:
+      $ref: "#/definitions/app-error"

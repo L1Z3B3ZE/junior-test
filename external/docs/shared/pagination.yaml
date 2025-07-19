@@ -1,0 +1,19 @@
+definitions:
+  pagination:
+    limit:
+      in: query
+      name: limit
+      description: limit count
+      required: true
+      schema:
+        type: integer
+      example: 100
+
+    offset:
+      in: query
+      name: offset
+      description: page index
+      required: true
+      schema:
+        type: integer
+      example: 0

@@ -1,0 +1,5 @@
+definitions:
+  409:
+    description: Conflict
+    content:
+      $ref: "#/definitions/app-error"

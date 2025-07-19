@@ -1,0 +1,5 @@
+definitions:
+  400:
+    description: Bad request
+    content:
+      $ref: "#/definitions/app-error"

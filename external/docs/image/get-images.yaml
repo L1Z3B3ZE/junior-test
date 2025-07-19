@@ -1,0 +1,90 @@
+/images:
+  get:
+    tags:
+      - Images
+    summary: Get images list
+    security:
+      - Bearer: []
+    parameters:
+      - name: albumId
+        in: query
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 20
+    responses:
+      200:
+        description: Images list
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      filename:
+                        type: string
+                      stored_filename:
+                        type: string
+                      mime_type:
+                        type: string
+                      size:
+                        type: string
+                      album_id:
+                        type: string
+                        format: uuid
+                      user_id:
+                        type: string
+                        format: uuid
+                      created_at:
+                        type: string
+                        format: date-time
+                meta:
+                  type: object
+                  properties:
+                    pagination:
+                      type: object
+                      properties:
+                        total:
+                          type: integer
+                        totalPages:
+                          type: integer
+                        currentPage:
+                          type: integer
+                        perPage:
+                          type: integer
+                        hasNextPage:
+                          type: boolean
+                        hasPrevPage:
+                          type: boolean
+                    filters:
+                      type: object
+                      properties:
+                        albumId:
+                          type: string
+                          format: uuid
+      401:
+        $ref: "#/definitions/401"
+      422:
+        $ref: "#/definitions/422"

@@ -1,0 +1,54 @@
+/user/login:
+  post:
+    tags:
+      - User
+    summary: Sign in
+    security: [ ]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [email, password]
+            properties:
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    position:
+                      type: string
+                    email:
+                      type: string
+                    organization:
+                      type: string
+                    role:
+                      type: string
+                    is_archive:
+                      type: boolean
+                access_token:
+                  type: string
+                refresh_token:
+                  type: string
+      401:
+        $ref: "#/definitions/401"
+      404:
+        $ref: "#/definitions/404"
+      422:
+        $ref: "#/definitions/422"

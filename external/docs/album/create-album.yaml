@@ -1,0 +1,51 @@
+/albums:
+  post:
+    tags:
+      - Albums
+    summary: Create a new album
+    security:
+      - Bearer: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example: "My Vacation"
+              description:
+                type: string
+                example: "Photos from my summer vacation"
+                nullable: true
+            required:
+              - title
+    responses:
+      201:
+        description: Album created successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                title:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                user_id:
+                  type: string
+                  format: uuid
+                created_at:
+                  type: string
+                  format: date-time
+      401:
+        $ref: "#/definitions/401"
+      409:
+        $ref: "#/definitions/409"
+      422:
+        $ref: "#/definitions/422"

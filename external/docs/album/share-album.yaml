@@ -1,0 +1,49 @@
+/albums/{id}/share:
+  post:
+    tags:
+      - Albums
+    summary: Share album with another user
+    security:
+      - Bearer: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              userId:
+                type: string
+                format: uuid
+    responses:
+      201:
+        description: Album shared successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                user_id:
+                  type: string
+                  format: uuid
+                album_id:
+                  type: string
+                  format: uuid
+      401:
+        $ref: "#/definitions/401"
+      403:
+        $ref: "#/definitions/403"
+      404:
+        $ref: "#/definitions/404"
+      422:
+        $ref: "#/definitions/422"

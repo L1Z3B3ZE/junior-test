@@ -1,0 +1,52 @@
+/images/{albumId}:
+  post:
+    tags:
+      - Images
+    summary: Upload image to album
+    security:
+      - Bearer: []
+    parameters:
+      - name: albumId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              file:
+                type: string
+                format: binary
+    responses:
+      201:
+        description: Image uploaded successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                filename:
+                  type: string
+                storedFilename:
+                  type: string
+                mimeType:
+                  type: string
+                size:
+                  type: string
+                createdAt:
+                  type: string
+                  format: date-time
+      401:
+        $ref: "#/definitions/401"
+      403:
+        $ref: "#/definitions/403"
+      404:
+        $ref: "#/definitions/404"
